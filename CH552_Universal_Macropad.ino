@@ -385,9 +385,13 @@ void encoderScroll() {
     // If we have moved the encoder enough to trigger a scroll, then do it
     if (encoderPos >= MIN_SCROLL_STEP) {
       Mouse_scroll(SCROLL_UP);
+      // The library leaves the mouse scroll value in the HID report, manually clear it
+      Mouse_scroll(0);
       encoderPos -= SCROLL_STEP;
     } else if (encoderPos <= -MIN_SCROLL_STEP) {
       Mouse_scroll(SCROLL_DOWN);
+      // The library leaves the mouse scroll value in the HID report, manually clear it
+      Mouse_scroll(0);
       encoderPos += SCROLL_STEP;
     }
   }
